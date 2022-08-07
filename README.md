@@ -1,8 +1,58 @@
 # 스프링부트 + 리액트 + 시큐리티 + JWT 공부
 
-## Available Scripts
+## 리액트 + 인텔리J 연동
 
-In the project directory, you can run:
+1. 인텔리J 설치 + VsCode 설치 
+2. node.js 설치 ( 모듈 사용을 위해 설치 필요 => npm )
+3. npm은 에러뜰 경우 yarn 사용.
+4. 스프링부트 프로젝트 생성 후 터미널에서 프로젝트 경로 src/main 이동 후 => npx create-react-app [프로젝트명]
+5. vsCode에서 파일 내려받은 후 npm start 리엑트 실행
+6. 중요! corss 에러가 나기때문에 package.json에 "proxy": "http://localhost:8080" 경로를 지정해줘야함.
+7. build.gradle에 추가 
+
+def frontendDir = "$projectDir/src/main/reactfront"
+
+sourceSets {
+	main {
+		resources { srcDirs = ["$projectDir/src/main/resources"]
+		}
+	}
+}
+
+processResources { dependsOn "copyReactBuildFiles" }
+
+task installReact(type: Exec) {
+	workingDir "$frontendDir"
+	inputs.dir "$frontendDir"
+	group = BasePlugin.BUILD_GROUP
+	if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+		commandLine "npm.cmd", "audit", "fix"
+		commandLine 'npm.cmd', 'install' }
+	else {
+		commandLine "npm", "audit", "fix" commandLine 'npm', 'install'
+	}
+}
+
+task buildReact(type: Exec) {
+	dependsOn "installReact"
+	workingDir "$frontendDir"
+	inputs.dir "$frontendDir"
+	group = BasePlugin.BUILD_GROUP
+	if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+		commandLine "npm.cmd", "run-script", "build"
+	} else {
+		commandLine "npm", "run-script", "build"
+	}
+}
+
+task copyReactBuildFiles(type: Copy) {
+	dependsOn "buildReact"
+	from "$frontendDir/build"
+	into "$projectDir/src/main/resources/static"
+}
+
+![image](https://user-images.githubusercontent.com/84554175/183284967-a239e477-bb6b-420e-a4b0-5f30767386f7.png)
+
 
 ### `npm start`
 
