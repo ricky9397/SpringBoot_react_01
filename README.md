@@ -1,6 +1,4 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 스프링부트 + 리액트 + 시큐리티 + JWT 공부
 
 ## Available Scripts
 
