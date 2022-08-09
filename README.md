@@ -57,14 +57,15 @@ task copyReactBuildFiles(type: Copy) {
 8. axios통신 할 경우 3000번 포트를 받을 경로 지정 해줘야 한다. corss에러 
 ![image](https://user-images.githubusercontent.com/84554175/183284967-a239e477-bb6b-420e-a4b0-5f30767386f7.png)
 
-9. 라이브러리 설치 
- - yarn add react-router-dom
- - yarn add axios
- - yarn add redux react-redux
- - yarn add react-bootstrap bootstrap
- - yarn add sass
- - yarn add cross-env --dev
-
+9. Installation 
+```sh
+ yarn add react-router-dom
+ yarn add axios
+ yarn add redux react-redux
+ yarn add react-bootstrap bootstrap
+ yarn add sass
+ yarn add cross-env --dev
+```
 ### `npm start`
 
 Runs the app in the development mode.\
