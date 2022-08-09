@@ -11,6 +11,7 @@
 6. 중요! corss 에러가 나기때문에 package.json에 "proxy": "http://localhost:8080" 경로를 지정해줘야함.
 7. build.gradle에 추가 
 
+```sh
 def frontendDir = "$projectDir/src/main/reactfront"
 
 sourceSets {
@@ -51,6 +52,7 @@ task copyReactBuildFiles(type: Copy) {
 	from "$frontendDir/build"
 	into "$projectDir/src/main/resources/static"
 }
+```
 
 8. axios통신 할 경우 3000번 포트를 받을 경로 지정 해줘야 한다. corss에러 
 ![image](https://user-images.githubusercontent.com/84554175/183284967-a239e477-bb6b-420e-a4b0-5f30767386f7.png)
